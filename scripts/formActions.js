@@ -1,17 +1,14 @@
 const NACIONALIDADES_ACEPTADAS = [
-    // América del Norte (北米 - hokubei)
     { key: 'US', name: "Estados Unidos" },
     { key: 'CA', name: "Canadá" },
     { key: 'MX', name: "México" },
 
-    // América del Sur (南米 - nanbei)
     { key: 'BR', name: "Brasil" },
     { key: 'AR', name: "Argentina" },
     { key: 'CL', name: "Chile" },
     { key: 'CO', name: "Colombia" },
     { key: 'PE', name: "Perú" },
 
-    // Europa (ヨーロッパ - yōroppa)
     { key: 'ES', name: "España" },
     { key: 'FR', name: "Francia" },
     { key: 'IT', name: "Italia" },
@@ -24,7 +21,6 @@ const NACIONALIDADES_ACEPTADAS = [
     { key: 'SE', name: "Suecia" },
     { key: 'NO', name: "Noruega" },
 
-    // Asia (アジア - ajia)
     { key: 'JP', name: "Japón" },
     { key: 'KR', name: "Corea del Sur" },
     { key: 'CN', name: "China" },
@@ -36,31 +32,25 @@ const NACIONALIDADES_ACEPTADAS = [
     { key: 'PH', name: "Filipinas" },
     { key: 'IN', name: "India" },
 
-    // Oceanía (オセアニア - oseania)
     { key: 'AU', name: "Australia" },
     { key: 'NZ', name: "Nueva Zelanda" },
 
-    // África (アフリカ - afurika)
     { key: 'ZA', name: "Sudáfrica" },
     { key: 'EG', name: "Egipto" },
     { key: 'MA', name: "Marruecos" },
     { key: 'NG', name: "Nigeria" }
 ];
 
-// Rest of the code remains the same...
-// Adding more kawaii functionality to our form~ ٩(◕‿◕｡)۶
 window.onload = function () {
     const form = document.getElementsByTagName("form")[0];
     const inputs = form[0].getElementsByTagName("input");
     const selects = form[0].getElementsByTagName("select");
 
-    // Make our inputs sparkle when focused! ✨
     for (let input of inputs) {
         input.onfocus = resaltarDesresaltar;
         input.addEventListener('blur', resaltarDesresaltar);
     }
 
-    // Give our selects some magic too! 🌟
     for (let select of selects) {
         select.onfocus = resaltar;
         select.addEventListener('blur', noResaltar);
@@ -69,7 +59,6 @@ window.onload = function () {
     llenarNacionalidad();
 };
 
-// Function to fill our nationality selector with love~ 💝
 function llenarNacionalidad() {
     const nacionalidad = document.getElementById("nationality");
 
@@ -81,12 +70,10 @@ function llenarNacionalidad() {
     }
 }
 
-// Make elements kawaii when selected (◕‿◕✿)
 function resaltar(evento) {
     evento.target.classList.add("selected");
 }
 
-// Return to normal state but still cute~
 function noResaltar(evento) {
     const clase = evento.target.classList.contains("selected");
     if (clase) {
@@ -94,7 +81,6 @@ function noResaltar(evento) {
     }
 }
 
-// Toggle our kawaii selected state! ✨
 function resaltarDesresaltar(evento) {
     evento.target.classList.toggle("selected");
 }
