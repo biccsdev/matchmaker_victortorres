@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatchyMatchy - Encuentra tu match</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Encuentra a tu Match!</h1>
+            <form action="">
+                <div class="form-group">
+                    <label for="photo">Sube tu foto</label>
+                    <input type="file" name="photo" id="photo" accept="image/*" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="first-name">Tu nombre</label>
+                    <input type="text" id="first-name" name="first-name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="last-name">Tu apellido</label>
+                    <input type="text" id="last-name" name="last-name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Tu correo electrónico</label>
+                    <input type="email" id="email" name="email" />
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Tu género</label>
+                    <select id="gender" name="gender">
+                        <option value="hombre">Hombre</option>
+                        <option value="mujer">Mujer</option>
+                    </select>
+                </div>
+
+                <fieldset>
+                    <legend>¿En qué estás interesadx?</legend>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="men" name="interest" value="men">
+                            <label for="men">Hombres</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="women" name="interest" value="women">
+                            <label for="women">Mujeres</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group">
+                    <label for="nationality">Nacionalidad de tu otra mitad</label>
+                    <select name="nationality" id="nationality">
+                        <option value="" disabled selected>Selecciona la Nacionalidad de tu otra mitad</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    Voy a tener suerte ✨
+                </button>
+            </form>
+        </div>
+    </div>
+    <script src="./scripts/formActions.js"></script>
+</body>
+
+</html>
