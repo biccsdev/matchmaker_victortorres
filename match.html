@@ -14,59 +14,60 @@
             <h1>It's a Match! <span class="heart">❤️</span></h1>
 
             <div class="profile-pic">
-                <img src="https://via.placeholder.com/200" alt="Profile Picture" class="avatar">
+                <img id="matchPhoto" src="https://via.placeholder.com/200" alt="Profile Picture" class="avatar">
             </div>
 
             <div class="user-info">
                 <div class="name-age">
-                    <h2>John Doe</h2>
-                    <span class="age">20</span>
+                    <h2 id="matchName"></h2>
+                    <span id="matchAge" class="age"></span>
                 </div>
 
                 <div class="details">
                     <div class="detail-row">
                         <span class="label">Género:</span>
-                        <span class="value">Male</span>
+                        <span id="matchGender" class="value"></span>
                     </div>
 
                     <div class="detail-row">
                         <span class="label">Fecha de nacimiento:</span>
-                        <span class="value">2004-04-15</span>
+                        <span id="matchDob" class="value"></span>
                     </div>
 
                     <div class="detail-row">
                         <span class="label">Dirección:</span>
-                        <span class="value">Calle Wallaby 42</span>
+                        <span id="matchStreet" class="value"></span>
                     </div>
 
                     <div class="detail-row">
                         <span class="label">Ciudad:</span>
-                        <span class="value">Sidney</span>
+                        <span id="matchCity" class="value"></span>
                     </div>
 
                     <div class="detail-row">
                         <span class="label">País:</span>
-                        <span class="value">Australia</span>
+                        <span id="matchCountry" class="value"></span>
                     </div>
 
                     <div class="detail-row">
                         <span class="label">Correo:</span>
-                        <span class="value">hola@gmail.com</span>
+                        <span id="matchEmail" class="value"></span>
                     </div>
 
                     <div class="detail-row">
                         <span class="label">Teléfono:</span>
-                        <span class="value">55 5555 5555</span>
+                        <span id="matchPhone" class="value"></span>
                     </div>
 
                     <div class="detail-row">
                         <span class="label">Celular:</span>
-                        <span class="value">55 5555 5555</span>
+                        <span id="matchCell" class="value"></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="./scripts/fetchMatch.js"></script>
 </body>
 
 </html>

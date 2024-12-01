@@ -1,17 +1,14 @@
 const NACIONALIDADES_ACEPTADAS = [
-    // América del Norte (北米 - hokubei)
     { key: 'US', name: "Estados Unidos" },
     { key: 'CA', name: "Canadá" },
     { key: 'MX', name: "México" },
 
-    // América del Sur (南米 - nanbei)
     { key: 'BR', name: "Brasil" },
     { key: 'AR', name: "Argentina" },
     { key: 'CL', name: "Chile" },
     { key: 'CO', name: "Colombia" },
     { key: 'PE', name: "Perú" },
 
-    // Europa (ヨーロッパ - yōroppa)
     { key: 'ES', name: "España" },
     { key: 'FR', name: "Francia" },
     { key: 'IT', name: "Italia" },
@@ -24,7 +21,6 @@ const NACIONALIDADES_ACEPTADAS = [
     { key: 'SE', name: "Suecia" },
     { key: 'NO', name: "Noruega" },
 
-    // Asia (アジア - ajia)
     { key: 'JP', name: "Japón" },
     { key: 'KR', name: "Corea del Sur" },
     { key: 'CN', name: "China" },
@@ -36,40 +32,42 @@ const NACIONALIDADES_ACEPTADAS = [
     { key: 'PH', name: "Filipinas" },
     { key: 'IN', name: "India" },
 
-    // Oceanía (オセアニア - oseania)
     { key: 'AU', name: "Australia" },
     { key: 'NZ', name: "Nueva Zelanda" },
 
-    // África (アフリカ - afurika)
     { key: 'ZA', name: "Sudáfrica" },
     { key: 'EG', name: "Egipto" },
     { key: 'MA', name: "Marruecos" },
     { key: 'NG', name: "Nigeria" }
 ];
 
-// Rest of the code remains the same...
-// Adding more kawaii functionality to our form~ ٩(◕‿◕｡)۶
+const NATIONALITY_MAPPING = {
+    'US': 'us', 'CA': 'ca', 'MX': 'mx', 'BR': 'br', 'ES': 'es',
+    'FR': 'fr', 'DE': 'de', 'AU': 'au', 'NZ': 'nz', 'TR': 'tr',
+    'GB': 'gb', 'NO': 'no', 'FI': 'fi', 'DK': 'dk', 'NL': 'nl'
+};
+
+
 window.onload = function () {
     const form = document.getElementsByTagName("form")[0];
     const inputs = form[0].getElementsByTagName("input");
     const selects = form[0].getElementsByTagName("select");
 
-    // Make our inputs sparkle when focused! ✨
     for (let input of inputs) {
         input.onfocus = resaltarDesresaltar;
         input.addEventListener('blur', resaltarDesresaltar);
     }
 
-    // Give our selects some magic too! 🌟
     for (let select of selects) {
         select.onfocus = resaltar;
         select.addEventListener('blur', noResaltar);
     }
 
     llenarNacionalidad();
+
+    form.addEventListener('submit', handleSubmit);
 };
 
-// Function to fill our nationality selector with love~ 💝
 function llenarNacionalidad() {
     const nacionalidad = document.getElementById("nationality");
 
@@ -81,12 +79,10 @@ function llenarNacionalidad() {
     }
 }
 
-// Make elements kawaii when selected (◕‿◕✿)
 function resaltar(evento) {
     evento.target.classList.add("selected");
 }
 
-// Return to normal state but still cute~
 function noResaltar(evento) {
     const clase = evento.target.classList.contains("selected");
     if (clase) {
@@ -94,7 +90,51 @@ function noResaltar(evento) {
     }
 }
 
-// Toggle our kawaii selected state! ✨
 function resaltarDesresaltar(evento) {
     evento.target.classList.toggle("selected");
+}
+
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+async function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const gender = formData.get('userGender');
+    const nationality = formData.get('nationality');
+
+    console.log('data: ', gender, nationality, formData);
+    // console.log("Starting");
+    // await sleep(200000); 
+    // console.log("After seconds");
+
+    try {
+        const match = await findMatch(gender, nationality);
+        if (match) {
+            saveMatchToLocalStorage(match);
+            window.location.href = 'match.html';
+        }
+    } catch (error) {
+        console.error('No match found', error);
+    }
+}
+
+async function findMatch(gender, nationality) {
+    const apiGender = gender === 'hombre' ? 'male' : 'female';
+    const apiNationality = NATIONALITY_MAPPING[nationality] || 'us';
+    console.log(`https://randomuser.me/api/?gender=${apiGender}&nat=${apiNationality}`)
+    // console.log("Starting");
+    // await sleep(200000);
+    // console.log("After seconds");
+    const response = await fetch(
+        `https://randomuser.me/api/?gender=${apiGender}&nat=${apiNationality}`
+    );
+    const data = await response.json();
+    // console.log('res: ', data)
+    // await sleep(10000);
+    return data.results[0];
+}
+
+function saveMatchToLocalStorage(match) {
+    localStorage.setItem('the_match', JSON.stringify(match));
 }
